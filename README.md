@@ -38,3 +38,26 @@ Website giải quyết các vấn đề thực tế:
 | Khác          | AJAX (JS + PHP)                    | Thêm/xóa giỏ hàng không reload trang          |
 
 ## 4. Cấu trúc thư mục dự án
+eyeglass-online/
+├── admin/                  # Giao diện và xử lý dành cho Quản trị viên
+│   └── index.php           # Dashboard quản trị
+├── assets/                 # Tài nguyên tĩnh
+│   ├── css/
+│   │   └── style.css       # File định dạng giao diện chính
+│   ├── js/
+│   │   └── main.js        # Xử lý các hiệu ứng và tương tác JS
+│   └── image/              # Lưu trữ hình ảnh sản phẩm và giao diện
+├── includes/               # Các file dùng chung (Components & Config)
+│   ├── db.php              # Kết nối cơ sở dữ liệu MySQL
+│   ├── functions.php       # Các hàm xử lý logic dùng chung
+│   ├── header.php          # Thanh điều hướng (Navbar) dùng chung
+│   └── footer.php          # Chân trang dùng chung
+├── sql/                    # Quản lý cơ sở dữ liệu
+│   └── database.sql        # File script khởi tạo database và bảng
+├── cart.php                # Trang giỏ hàng
+├── index.php               # Trang chủ dự án
+├── login.php               # Trang đăng nhập
+├── logout.php              # Xử lý đăng xuất
+├── product-detail.php      # Trang chi tiết sản phẩm
+├── register.php            # Trang đăng ký tài khoản
+└── shop.php                # Trang danh sách sản phẩm (Cửa hàng)
