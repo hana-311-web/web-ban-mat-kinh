@@ -37,24 +37,27 @@ Website giải quyết các vấn đề thực tế:
 | Database      | MySQL                              | Lưu sản phẩm, đơn hàng, tài khoản             |
 | Khác          | AJAX (JS + PHP)                    | Thêm/xóa giỏ hàng không reload trang          |
 
-## 4. Cấu trúc thư mục dự án
-eyeglass-online/
-├── admin/                  # Dashboard và quản lý dành cho Quản trị viên
-├── assets/                 # Tài nguyên tĩnh (CSS, JS, Hình ảnh)
-│   ├── css/                # Định dạng giao diện chính
-│   ├── js/                 # Xử lý tương tác phía người dùng
-│   └── image/              # Hình ảnh sản phẩm và biểu tượng
-├── includes/               # Các thành phần hệ thống dùng chung
-│   ├── db.php              # Kết nối Database
-│   ├── functions.php       # Logic xử lý nghiệp vụ
-│   ├── header.php          # Navbar & Metadata
-│   └── footer.php          # Thông tin chân trang
-├── sql/                    # Scripts cơ sở dữ liệu
-│   └── database.sql        # File khởi tạo cấu trúc dữ liệu
-├── index.php               # Trang chủ dự án
-├── shop.php                # Danh mục sản phẩm
-├── product-detail.php      # Chi tiết sản phẩm
-├── cart.php                # Quản lý giỏ hàng
-├── login.php               # Trang đăng nhập
-├── register.php            # Trang đăng ký
-└── logout.php              # Xử lý đăng xuất
+
+---
+
+## 5. Hướng dẫn cài đặt & chạy
+
+1. Cài **XAMPP** (Apache + MySQL)
+2. Clone repository:
+   ```bash
+   git clone https://github.com/yourusername/eyeglass-online.git
+Bước 2: Đưa vào XAMPP
+Copy thư mục vào: C:\xampp\htdocs\eyeglass-online
+Bước 3: Tạo database
+-Mở trình duyệt:http://localhost/phpmyadmin
+-Tạo database:eyeglass_db
+-Import file:sql/database.sql
+Bước 4: Cấu hình kết nối
+-Mở file:includes/db.php
+-Cập nhật:
+$conn = new mysqli("localhost", "root", "", "eyeglass_db");
+if ($conn->connect_error) {
+    die("Kết nối thất bại: " . $conn->connect_error);
+} 
+Bước 5: Chạy project
+Truy cập http://localhost/eyeglass-online
