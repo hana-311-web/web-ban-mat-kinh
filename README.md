@@ -1,72 +1,40 @@
-Hệ Thống Bán Kính Mắt Trực Tuyến
-- Giới thiệu
+**Website bán kính mắt trực tuyến**  
+## 1. Giới thiệu dự án
+Eyeglass Online là hệ thống website thương mại điện tử giúp khách hàng mua kính mắt **có sẵn**, đặt trước hoặc **làm theo đơn** (kính theo nhu cầu) ngay tại nhà.
+Website giải quyết các vấn đề thực tế:
+- Không cần sắp xếp thời gian đi cửa hàng, chờ tư vấn/đo mắt
+- Không bị giới hạn bởi tồn kho của từng cửa hàng
+- Dễ dàng so sánh mẫu, giá, tính năng giữa nhiều loại kính
+- Phù hợp với người bận rộn hoặc ở xa
 
-Hệ thống bán kính mắt trực tuyến là một ứng dụng web giúp khách hàng mua kính nhanh chóng và tiện lợi mà không cần đến cửa hàng.
+## 2. Tính năng chính
+### 2.1. Phía Khách hàng (Customer)
+1. Đăng ký / Đăng nhập (email + mật khẩu)
+2. Trang chủ + Danh mục sản phẩm (kính cận, kính râm, gọng kính,tròng kính,khuyến mãi)
+3. Tìm kiếm + Lọc (giá, loại kính, thương hiệu, độ cận)
+4. Xem chi tiết sản phẩm + Ảnh 
+5. Thêm vào giỏ hàng (AJAX – không reload trang)
+6. Giỏ hàng (cập nhật số lượng, xóa, tính tổng tiền)
+7. Đặt hàng (2 loại: kính sẵn hoặc kính theo đơn)
+8. Tư vấn nhanh (gửi yêu cầu đo mắt / chọn gọng + tròng)
+9. Xem lịch sử đơn hàng + trạng thái
+10. Trang cá nhân (cập nhật thông tin)
 
-Ứng dụng cung cấp các chức năng:
+### 2.2. Phía Admin (Quản trị viên)
+1. Dashboard
+2. Quản lý sản phẩm (thêm/sửa/xóa + upload ảnh)
+3. Quản lý đơn hàng (xác nhận, cập nhật trạng thái)
+4. Quản lý tài khoản khách hàng
+5. Thống kê đơn hàng (số lượng, doanh thu – dùng PHP + MySQL)
 
-Mua kính có sẵn
-Đặt trước khi sản phẩm hết hàng
-Đặt làm kính theo nhu cầu (độ cận, loạn, tròng kính,...)
-Nhận tư vấn trực tuyến
-Theo dõi trạng thái đơn hàng
-- Mục tiêu
-Giảm sự bất tiện khi phải đến cửa hàng trực tiếp
-Tiết kiệm thời gian di chuyển và chờ đợi
-Mở rộng sự lựa chọn sản phẩm
-Nâng cao trải nghiệm mua sắm hiện đại, linh hoạt
-- Vấn đề thực tế
+## 3. Công nghệ sử dụng
 
-Việc mua kính theo cách truyền thống còn nhiều hạn chế:
+| Phần          | Công nghệ                          | Mục đích                                      |
+|---------------|------------------------------------|-----------------------------------------------|
+| Frontend      | HTML + CSS + Bootstrap 5           | Giao diện responsive, đẹp, mobile-friendly    |
+| Interactivity | JavaScript (vanilla + Bootstrap JS)| Giỏ hàng động, filter, validation form        |
+| Backend       | PHP 8                              | Xử lý đăng nhập, CRUD, giỏ hàng, đặt hàng     |
+| Database      | MySQL                              | Lưu sản phẩm, đơn hàng, tài khoản             |
+| Khác          | AJAX (JS + PHP)                    | Thêm/xóa giỏ hàng không reload trang          |
 
-Phải sắp xếp thời gian đến cửa hàng
-Chờ đợi tư vấn và đo mắt
-Sản phẩm bị giới hạn theo tồn kho
-Khó so sánh giá và mẫu mã giữa các cửa hàng
-Không phù hợp với người bận rộn hoặc ở xa
-- Giải pháp
-
-Hệ thống mang lại giải pháp mua kính online hiệu quả:
-
-Xem và chọn kính mọi lúc, mọi nơi
-So sánh giá và mẫu mã dễ dàng
-Đặt kính theo thông số cá nhân
-Đặt trước sản phẩm khi hết hàng
-Theo dõi đơn hàng nhanh chóng
-- Chức năng chính
-+ Người dùng
-Đăng ký / Đăng nhập
-Xem danh sách sản phẩm
-Tìm kiếm và lọc sản phẩm
-Đặt hàng (có sẵn / đặt trước / đặt làm)
-Nhập thông tin độ kính
-Theo dõi đơn hàng
-Nhận tư vấn trực tuyến
-+ Quản trị viên
-Quản lý sản phẩm
-Quản lý đơn hàng
-Cập nhật trạng thái đơn
-Quản lý tồn kho
-Hỗ trợ tư vấn khách hàng
-  - Công nghệ sử dụng
-Frontend: HTML, CSS, JavaScript (ReactJS)
-Backend: NodeJS / Java / Spring Boot
-Database: MySQL / SQL Server
-Version Control: Git & GitHub
-- Hướng phát triển
-Tích hợp AI tư vấn chọn kính
-Thử kính online bằng AR
-Thanh toán online (Momo, VNPay)
-Kết nối hệ thống đo mắt thông minh
-- Demo
-
-(Thêm hình ảnh hoặc video demo tại đây)
-
-- Thành viên thực hiện
-Huỳnh Thị Minh Thơ
-Lâm Gia Hân
-Nguyễn Quốc Khánh
-Bùi Lê Hi Sĩ
-- License
-
-Dự án được phát triển phục vụ mục đích học tập và nghiên cứu.
+## 4. Cấu trúc thư mục dự án
