@@ -46,18 +46,10 @@ Website giải quyết các vấn đề thực tế:
 2. Clone repository:
    ```bash
    git clone https://github.com/yourusername/eyeglass-online.git
-3. Đưa vào XAMPP
-Copy thư mục vào: C:\xampp\htdocs\eyeglass-online
-Bước 3: Tạo database
--Mở trình duyệt:http://localhost/phpmyadmin
--Tạo database:eyeglass_db
--Import file:sql/database.sql
-Bước 4: Cấu hình kết nối
--Mở file:includes/db.php
--Cập nhật:
-$conn = new mysqli("localhost", "root", "", "eyeglass_db");
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-} 
-Bước 5: Chạy project
-Truy cập http://localhost/eyeglass-online
+3. Các bước tiếp theo:
+Copy thư mục eyeglass-online vào C:\xampp\htdocs\
+Mở phpMyAdmin → Tạo database: eyeglass_db
+Import file: sql/database.sql
+Sửa file includes/db.php:PHP$conn = new mysqli("localhost", "root", "", "eyeglass_db");
+Start Apache + MySQL trên XAMPP
+Truy cập: http://localhost/eyeglass-online
