@@ -55,3 +55,4 @@ Website giải quyết các vấn đề thực tế:
    PHP$conn = new mysqli("localhost", "root", "", "eyeglass_db");
 - Start Apache + MySQL trên XAMPP
 - Truy cập: http://localhost/eyeglass-online
+
