@@ -46,7 +46,7 @@ Website giải quyết các vấn đề thực tế:
 2. Clone repository:
    ```bash
    git clone https://github.com/yourusername/eyeglass-online.git
-Bước 2: Đưa vào XAMPP
+3. Đưa vào XAMPP
 Copy thư mục vào: C:\xampp\htdocs\eyeglass-online
 Bước 3: Tạo database
 -Mở trình duyệt:http://localhost/phpmyadmin
