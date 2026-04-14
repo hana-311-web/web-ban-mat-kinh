@@ -126,19 +126,32 @@ if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
             
             <!-- Main navigation links -->
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : '' ?>" href="index.php">Trang Chủ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'shop.php' ? 'active' : '' ?>" href="shop.php">Mắt Kính Nam</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="shop.php">Mắt Kính Nữ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Khuyến Mãi</a>
-                </li>
-            </ul>
+    <li class="nav-item">
+        <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : '' ?>" href="index.php">Trang Chủ</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link <?= (isset($_GET['cat']) && $_GET['cat'] == 'kinh-can') ? 'active' : '' ?>" href="shop.php?cat=kinh-can">Kính Cận</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link <?= (isset($_GET['cat']) && $_GET['cat'] == 'kinh-ram') ? 'active' : '' ?>" href="shop.php?cat=kinh-ram">Kính Râm</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link <?= (isset($_GET['cat']) && $_GET['cat'] == 'gong-kinh') ? 'active' : '' ?>" href="shop.php?cat=gong-kinh">Gọng Kính</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link <?= (isset($_GET['cat']) && $_GET['cat'] == 'trong-kinh') ? 'active' : '' ?>" href="shop.php?cat=trong-kinh">Tròng Kính</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link text-danger <?= (isset($_GET['filter']) && $_GET['filter'] == 'sale') ? 'active' : '' ?>" href="shop.php?filter=sale">
+            <i class="bi bi-fire me-1"></i>Khuyến Mãi
+        </a>
+    </li>
+</ul>
 
             <!-- Right side features (Search, User, Cart) -->
             <div class="d-flex align-items-center gap-3">
