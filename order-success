@@ -1,0 +1,35 @@
+<?php 
+include 'includes/header.php';
+
+$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+?>
+
+<div class="container text-center mt-5 mb-5 pt-4 pb-5 rounded-4 shadow-sm" style="min-height: 50vh; background-color: #f8fafc;">
+    <div class="mb-4">
+        <i class="bi bi-check-circle-fill text-success" style="font-size: 5rem;"></i>
+    </div>
+    
+    <h1 class="fw-bold text-success mb-3">Đặt Mua Kính Thành Công!</h1>
+    
+    <p class="text-muted fs-5 mb-2">
+        Cảm ơn bạn đã tin tưởng và sử dụng dịch vụ cắt kính của hệ thống EyeGlass.
+    </p>
+    <p class="text-muted fs-5 mb-4">
+        Đơn hàng của bạn có mã số <strong class="badge bg-primary fs-5">#<?= $id ?></strong> đã được lưu lên hệ thống chờ chuyên viên xác nhận.
+    </p>
+
+    <div class="alert alert-warning d-inline-block px-4 py-3 text-start shadow-sm mb-5 border-warning border-2">
+        <h5 class="fw-bold mb-2"><i class="bi bi-telephone-inbound text-warning me-2"></i>Lưu ý về Đơn Kính Khúc Xạ</h5>
+        <div class="small">
+            - Đối với các thẻ kính yêu cầu cắt mài độ Cận/Viễn/Loạn chuyên biệt.<br>
+            - Chuyên viên tư vấn của chúng tôi sẽ <b>gọi điện xác nhận tự động thông số thị lực</b> của chẩn đoán Y tế 1 lần nữa trước khi gửi xuống xưởng kỹ thuật. Vui lòng để ý Điện thoại theo số điện thoại đã điền nhé!
+        </div>
+    </div>
+
+    <div>
+        <a href="index.php" class="btn btn-outline-secondary rounded-pill px-5 py-2 fw-bold me-2"><i class="bi bi-house-door"></i> Về Trang chủ</a>
+        <a href="shop.php" class="btn btn-primary rounded-pill px-5 py-2 fw-bold shadow"><i class="bi bi-bag"></i> Tiếp tục Mua sắm</a>
+    </div>
+</div>
+
+<?php include 'includes/footer.php'; ?>
