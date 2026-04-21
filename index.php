@@ -50,71 +50,46 @@
     </div>
 </section>
 
-<!-- Featured Products Section -->
+<!-- New Products Section -->
 <section class="py-5 bg-white rounded-top-5 mt-4">
     <div class="container">
         <div class="d-flex justify-content-between align-items-end mb-4">
             <div>
-                <h6 class="text-primary fw-bold text-uppercase mb-1">Bán Chạy Nhất</h6>
-                <h2 class="fw-bold mb-0" style="color: #2c3e50;">Sản Phẩm Nổi Bật</h2>
+                <h6 class="text-primary fw-bold text-uppercase mb-1">Cập Nhật Tuần Này</h6>
+                <h2 class="fw-bold mb-0" style="color: #2c3e50;">Sản Phẩm MỚI</h2>
             </div>
             <a href="shop.php" class="text-decoration-none fw-semibold">Xem tất cả &rarr;</a>
         </div>
         
-        <div class="row g-4" id="featured-products">
+        <div class="row g-4">
             <?php
-            // Lấy 4 sản phẩm mới nhất từ DB
+            // Lấy 4 sản phẩm mới nhất
             if (isset($conn)) {
                 try {
-                    $stmt = $conn->prepare("SELECT * FROM san_pham ORDER BY id DESC LIMIT 4");
-                    if ($stmt) {
-                        $stmt->execute();
-                        $result = $stmt->get_result();
-                        $products = $result->fetch_all(MYSQLI_ASSOC);
-                    } else {
-                        $products = [];
-                    }
-                } catch (Exception $e) {
-                    $products = [];
-                }
-            } else {
-                $products = [];
-            }
+                    $stmt = $conn->prepare("SELECT * FROM san_pham WHERE trang_thai = 1 ORDER BY id DESC LIMIT 4");
+                    if ($stmt && $stmt->execute()) {
+                        $products_new = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+                    } else { $products_new = []; }
+                } catch (Exception $e) { $products_new = []; }
+            } else { $products_new = []; }
 
-            // Fallback khi DB trống hoặc chưa có dữ liệu
-            if (empty($products)) {
-                $products = [
-                    ['id' => 1, 'ten_sp' => 'Kính Cận Phản Quang Titanium x1', 'gia' => 850000, 'hinh_anh' => 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=400&q=80', 'is_custom' => 1],
-                    ['id' => 2, 'ten_sp' => 'Kính Râm Phân Cực Ray-Ban', 'gia' => 2100000, 'hinh_anh' => 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=400&q=80', 'is_custom' => 0],
-                    ['id' => 3, 'ten_sp' => 'Gọng Kính Tròn Vintage Rize', 'gia' => 450000, 'hinh_anh' => 'https://images.unsplash.com/photo-1483984639903-bb7424fbde7a?auto=format&fit=crop&w=400&q=80', 'is_custom' => 0],
-                    ['id' => 4, 'ten_sp' => 'Kính Chống Ánh Sáng Xanh BLP', 'gia' => 650000, 'hinh_anh' => 'https://images.unsplash.com/photo-1509695507497-903c140c43b0?auto=format&fit=crop&w=400&q=80', 'is_custom' => 1],
-                ];
-            }
-
-            foreach ($products as $p): 
+            foreach ($products_new as $p): 
                 $img_src = !empty($p['hinh_anh']) ? $p['hinh_anh'] : 'https://placehold.co/400x400/ebebeb/a3a3a3?text=Kinhmatt';
-                // Kiểm tra nếu hinh_anh không phải link tuyệt đối thì gán đường dẫn
-                if (!filter_var($img_src, FILTER_VALIDATE_URL)) {
-                    $img_src = 'assets/images/' . $img_src;
-                }
+                if (!filter_var($img_src, FILTER_VALIDATE_URL)) { $img_src = 'image/' . $img_src; }
             ?>
             <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="card product-card h-100 position-relative">
-                    <?php if (isset($p['is_custom']) && $p['is_custom']): ?>
-                        <span class="badge bg-danger badge-custom shadow-sm"><i class="bi bi-fire"></i> HOT</span>
-                    <?php else: ?>
-                        <span class="badge bg-success badge-custom shadow-sm">MỚI</span>
-                    <?php endif; ?>
+                <div class="card product-card h-100 position-relative border-0 shadow-sm transition-hover">
+                    <span class="badge bg-success badge-custom shadow-sm position-absolute top-0 start-0 m-2 px-2 py-1 z-1">MỚI</span>
                     
-                    <a href="product-detail.php?id=<?= $p['id'] ?>" class="product-img-wrapper">
-                        <img src="<?= htmlspecialchars($img_src) ?>" alt="<?= htmlspecialchars($p['ten_sp']) ?>">
+                    <a href="product-detail.php?id=<?= $p['id'] ?>" class="product-img-wrapper d-block overflow-hidden" style="height: 250px;">
+                        <img src="<?= htmlspecialchars($img_src) ?>" alt="<?= htmlspecialchars($p['ten_sp']) ?>" class="w-100 h-100 object-fit-cover" style="transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                     </a>
                     <div class="card-body text-center d-flex flex-column p-4">
-                        <h5 class="product-title mb-2 text-truncate" title="<?= htmlspecialchars($p['ten_sp']) ?>">
+                        <h5 class="product-title mb-2 text-truncate fw-bold fs-6" title="<?= htmlspecialchars($p['ten_sp']) ?>">
                             <?= htmlspecialchars($p['ten_sp']) ?>
                         </h5>
-                        <p class="product-price mt-auto mb-3"><?= number_format($p['gia'], 0, ',', '.') ?>đ</p>
-                        <a href="cart.php?action=add&id=<?= $p['id'] ?>" class="btn btn-outline-primary w-100 btn-custom mt-auto">
+                        <p class="product-price mt-auto mb-3 text-danger fw-bold fs-5"><?= number_format($p['gia'], 0, ',', '.') ?>đ</p>
+                        <a href="cart.php?action=add&id=<?= $p['id'] ?>" class="btn btn-outline-primary w-100 btn-custom mt-auto rounded-pill fw-semibold">
                             <i class="bi bi-cart-plus"></i> Thêm Giỏ Hàng
                         </a>
                     </div>
@@ -124,6 +99,61 @@
         </div>
     </div>
 </section>
+
+<!-- Hot Products Section -->
+<section class="py-5 bg-light mt-2">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-end mb-4">
+            <div>
+                <h6 class="text-danger fw-bold text-uppercase mb-1"><i class="bi bi-fire"></i> Bán Chạy Nhất</h6>
+                <h2 class="fw-bold mb-0" style="color: #2c3e50;">Sản Phẩm HOT</h2>
+            </div>
+            <a href="shop.php" class="text-decoration-none fw-semibold">Xem tất cả &rarr;</a>
+        </div>
+        
+        <div class="row g-4">
+            <?php
+            // Lấy 4 sản phẩm HOT nhiều lượt xem nhất
+            if (isset($conn)) {
+                try {
+                    $stmt = $conn->prepare("SELECT * FROM san_pham WHERE trang_thai = 1 ORDER BY luot_xem DESC, id DESC LIMIT 4");
+                    if ($stmt && $stmt->execute()) {
+                        $products_hot = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+                    } else { $products_hot = []; }
+                } catch (Exception $e) { $products_hot = []; }
+            } else { $products_hot = []; }
+
+            foreach ($products_hot as $p): 
+                $img_src = !empty($p['hinh_anh']) ? $p['hinh_anh'] : 'https://placehold.co/400x400/ebebeb/a3a3a3?text=Kinhmatt';
+                if (!filter_var($img_src, FILTER_VALIDATE_URL)) { $img_src = 'image/' . $img_src; }
+            ?>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="card product-card h-100 position-relative border-0 shadow-sm transition-hover">
+                    <span class="badge bg-danger badge-custom shadow-sm position-absolute top-0 start-0 m-2 px-2 py-1 z-1"><i class="bi bi-fire"></i> HOT</span>
+                    
+                    <a href="product-detail.php?id=<?= $p['id'] ?>" class="product-img-wrapper d-block overflow-hidden" style="height: 250px;">
+                        <img src="<?= htmlspecialchars($img_src) ?>" alt="<?= htmlspecialchars($p['ten_sp']) ?>" class="w-100 h-100 object-fit-cover" style="transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    </a>
+                    <div class="card-body text-center d-flex flex-column p-4">
+                        <h5 class="product-title mb-2 text-truncate fw-bold fs-6" title="<?= htmlspecialchars($p['ten_sp']) ?>">
+                            <?= htmlspecialchars($p['ten_sp']) ?>
+                        </h5>
+                        <p class="product-price mt-auto mb-3 text-danger fw-bold fs-5"><?= number_format($p['gia'], 0, ',', '.') ?>đ</p>
+                        <a href="cart.php?action=add&id=<?= $p['id'] ?>" class="btn btn-outline-danger w-100 btn-custom mt-auto rounded-pill fw-semibold">
+                            <i class="bi bi-cart-plus"></i> Thêm Giỏ Hàng
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<style>
+.transition-hover { transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s; }
+.transition-hover:hover { transform: translateY(-5px); box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important; }
+</style>
 
 <!-- Newsletter / Call To Action -->
 <section class="py-5 mb-5 mt-4">
