@@ -48,6 +48,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Đăng ký</button>
                     </form>
+                    <div class="text-center mt-3">
+                        <a href="login.php">Đã có tài khoản? Đăng nhập ngay</a>
+                    </div>
                 </div>
             </div>
         </div>
